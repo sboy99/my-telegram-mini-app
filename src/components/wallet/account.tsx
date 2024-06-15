@@ -3,7 +3,7 @@
 import { getSerializedWallet, getSerilizedBalance } from "@/lib/utils";
 import { useAccount, useBalance } from "wagmi";
 import { useTma } from "../tma/hook";
-import { Info } from "../info";
+import { ProfileCard } from "../profile-card";
 
 export function Account() {
   const tma = useTma();
@@ -20,10 +20,11 @@ export function Account() {
   const userFirstName = tma.user?.firstName;
 
   return (
-    <Info
+    <ProfileCard
       address={walletAddress}
       balance={walletBalance}
       name={userFirstName}
+      isWalletConnected={account?.isConnected}
     />
   );
 }

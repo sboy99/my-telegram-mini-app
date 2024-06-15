@@ -27,5 +27,30 @@ export function getSerilizedBalance(
   chainSymbol?: string,
   balance = BigInt(0)
 ): string {
-  return balance.toString() + " " + chainSymbol;
+  return (
+    (parseFloat(balance.toString()) / 10 ** 18).toFixed(4) + " " + chainSymbol
+  );
+}
+
+export function formatNumberToMoneySuffix(num: number): string {
+  if (num < 1_000) {
+    return num.toString();
+  } else if (num < 1_000_000) {
+    return (num / 1_000).toFixed(2).replace(/\.00$/, "") + "K";
+  } else if (num < 1_000_000_000) {
+    return (num / 1_000_000).toFixed(2).replace(/\.00$/, "") + "M";
+  } else if (num < 1_000_000_000_000) {
+    return (num / 1_000_000_000).toFixed(2).replace(/\.00$/, "") + "B";
+  } else if (num < 1_000_000_000_000_000) {
+    return (num / 1_000_000_000_000).toFixed(2).replace(/\.00$/, "") + "T";
+  } else {
+    return (num / 1_000_000_000_000_000).toFixed(2).replace(/\.00$/, "") + "Q";
+  }
+}
+
+export function formatPriceChange(change: number): [string, boolean] {
+  const formatted = change.toFixed(4);
+  const isDown = change <= 0;
+
+  return [formatted, isDown];
 }

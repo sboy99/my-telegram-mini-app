@@ -8,6 +8,7 @@ import { SDKProvider } from "@tma.js/sdk-react";
 import { getTelegramUser } from "@/lib/utils";
 import { ExternalLinkIcon, Wallet2Icon, WalletIcon } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export function TmaProvider({ children }: PropsWithChildren) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -46,6 +47,8 @@ export function TmaProvider({ children }: PropsWithChildren) {
   );
 }
 
+// -------------------------------PRIVATE--------------------------------- //
+
 function TmaProviderLoading() {
   return (
     <div className="min-h-screen grid place-items-center">
@@ -55,7 +58,7 @@ function TmaProviderLoading() {
 }
 
 function TmaProviderError() {
-  const telegramAppLink = "https://t.me/my_mini_tele_app_bot.";
+  const telegramAppLink = "https://t.me/my_mini_tele_app_bot";
 
   return (
     <div className="min-h-screen grid place-items-center">
@@ -66,15 +69,17 @@ function TmaProviderError() {
           Telegram to continue.
         </code>
 
-        <Link
-          href={telegramAppLink}
-          className="hover:underline font-medium flex items-center gap-2"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p>Open In Telegram</p>
-          <ExternalLinkIcon size={16} />
-        </Link>
+        <Button asChild variant={"link"} className="w-fit h-fit p-0">
+          <Link
+            href={telegramAppLink}
+            className="font-medium flex items-center gap-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <p>Open In Telegram</p>
+            <ExternalLinkIcon size={16} />
+          </Link>
+        </Button>
       </div>
     </div>
   );
