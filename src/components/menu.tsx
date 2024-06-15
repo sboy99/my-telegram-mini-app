@@ -1,22 +1,18 @@
 import {
   Cloud,
   CreditCard,
-  Github,
-  Keyboard,
+  Folder,
   LifeBuoy,
-  LogOut,
   LucideMenu,
   Mail,
   MessageSquare,
   Plus,
   PlusCircle,
-  Settings,
   User,
   UserPlus,
   Users,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,6 +28,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
+import { Me } from "./me";
 
 export function Menu() {
   return (
@@ -40,7 +37,9 @@ export function Menu() {
         <LucideMenu className="h-10 w-10 p-2 rounded-full hover:bg-slate-100" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56 ml-2">
-        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuLabel>
+          <Me />
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <Link href="/">
@@ -103,11 +102,13 @@ export function Menu() {
           <span>API</span>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LogOut className="mr-2 h-4 w-4" />
-          <span>Log out</span>
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        <Link href="https://github.com/sboy99/my-telegram-mini-app">
+          <DropdownMenuItem>
+            <Folder className="mr-2 h-4 w-4" />
+            <span>Repository</span>
+            <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          </DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );
